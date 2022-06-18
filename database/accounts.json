@@ -1,0 +1,47 @@
+[{
+  "_id": {
+    "$oid": "629641e391e5e79adec038bd"
+  },
+  "phone": "0968508930",
+  "email": "daonhattan0706001@gmail.com",
+  "name": "Đào Nhật Tân",
+  "address": "Bạc Liêu",
+  "front_IDcard": "\\uploads\\cmnd\\daonhattan0706001@gmail.com-front_IDcard-1654014435552-WIN_20200722_18_50_50_Pro.jpg",
+  "back_IDcard": "\\uploads\\cmnd\\daonhattan0706001@gmail.com-back_IDcard-1654014435553-WIN_20200722_18_50_50_Pro.jpg",
+  "username": "4127501121",
+  "password": "$2b$10$ITBj/xFqc0kNUAkwD.RqXehzksUPhnXjltYJfavdlywyndnvBhcLa",
+  "firstLogin": false,
+  "verifyAccount": "waiting",
+  "countLogin": 0,
+  "lockAccount": false,
+  "safeAccount": true,
+  "update_at": {
+    "$date": {
+      "$numberLong": "1654014465765"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6296425491e5e79adec038cf"
+  },
+  "phone": "0968508931",
+  "email": "aqqa00001@gmail.com",
+  "name": "Nguyễn Hửu Đăng",
+  "address": "Tây Ninh",
+  "front_IDcard": "\\uploads\\cmnd\\aqqa00001@gmail.com-front_IDcard-1654014548531-WIN_20200722_18_50_50_Pro.jpg",
+  "back_IDcard": "\\uploads\\cmnd\\aqqa00001@gmail.com-back_IDcard-1654014548532-WIN_20200722_18_50_50_Pro.jpg",
+  "username": "3533590042",
+  "password": "$2b$10$8PMIuUBCBzdDBIMlQ8Shv.Os0ZQnjeWEpsubtW3BSg0yBncZKhOVm",
+  "firstLogin": false,
+  "verifyAccount": "done",
+  "countLogin": 0,
+  "lockAccount": false,
+  "safeAccount": true,
+  "update_at": {
+    "$date": {
+      "$numberLong": "1654014574984"
+    }
+  },
+  "__v": 0
+}]

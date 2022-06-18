@@ -1,0 +1,44 @@
+[{
+  "_id": {
+    "$oid": "628643d106d92475a185b7c7"
+  },
+  "number_card": 111111,
+  "date": {
+    "$date": {
+      "$numberLong": "1665360000000"
+    }
+  },
+  "CVV": 411,
+  "card_balance": {
+    "$numberLong": "99999981000000"
+  },
+  "message": "Không giới hạn số lần nạp và số tiền mỗi lần nạp."
+},{
+  "_id": {
+    "$oid": "6286470906d92475a185b7ca"
+  },
+  "number_card": 222222,
+  "date": {
+    "$date": {
+      "$numberLong": "1668124800000"
+    }
+  },
+  "CVV": 443,
+  "card_balance": 8999999,
+  "max_charge": 1000000,
+  "message": "Không giới hạn số lần nạp nhưng chỉ được nạp tối đa 1 triệu/lần"
+},{
+  "_id": {
+    "$oid": "6286481606d92475a185b7cb"
+  },
+  "number_card": 333333,
+  "date": {
+    "$date": {
+      "$numberLong": "1670803200000"
+    }
+  },
+  "CVV": 577,
+  "card_balance": 0,
+  "max_charge": 0,
+  "message": "Khi nạp bằng thẻ này thì luôn nhận được thông báo là “thẻ hết tiền”"
+}]
