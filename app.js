@@ -32,7 +32,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 const opts = {
-  seNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true 
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 };
 
 mongoose.Promise = global.Promise;
