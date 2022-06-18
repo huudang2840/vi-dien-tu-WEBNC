@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách tài khoản đang bị vô hiệu hóa</title>
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+
+</head>
+<body>
+    <div class = "sidebar">
+        <div class="side-brand">
+            <i class='bx bx-wallet'></i>
+            <span class="logo-name"> MAMA</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="/admin">
+                    <i class='bx bxs-time'></i>
+                    <span class="link-name">Danh sách tài khoản đang chờ kích hoạt</span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/updating">
+                    <i class='bx bx-history' ></i>
+                    <span class="link-name">Danh sách tài khoản đang chờ cập nhật</span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/active">
+                    <i class='bx bx-check'></i>
+                    <span class="link-name">Danh sách tài khoản đã kích hoạt</span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/disable">
+                    <i class='bx bx-x-circle'></i>
+                    <span class="link-name">Danh sách tài khoản đã bị vô hiệu hóa</span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/block">
+                    <i class='bx bxs-lock-alt'></i>
+                    <span class="link-name">Danh sách tài khoản đã bị khóa vô thời hạn</span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/approveTransaction">
+                    <i class='bx bx-money-withdraw'></i>
+                    <span class="link-name">Danh sách các giao dịch đang chờ phê duyệt</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home">
+        <nav>
+            <h3>
+                <label>
+                    <i class='bx bxs-dashboard' ></i>
+                </label>
+                Dashboard
+            </h3>
+            <div class="find">
+                <i class='bx bx-search-alt-2' ></i>
+                <input class="search" type="text" placeholder="Tìm kiếm"/>
+            </div>
+
+            <div class="min">
+                <h5>
+                    <label>
+                        <i class='bx bxs-user' ></i>
+                    </label>
+                    Admin
+                    <a href="/admin/logout">Đăng xuất</a>
+
+
+                </h5>
+            </div>
+        </nav>
+
+        <h3 class="list1">
+            Danh sách tài khoản đang bị vô hiệu hóa
+        </h3>
+
+        <div class="board">
+            <table width="70%">
+                <thead>
+                    <tr>
+                        <td><h5>Tên</h5></td>
+                        <td><h5>Username</h5></td>
+                        <td><h5>Trạng thái</h5></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% userSort.forEach(e => { %>
+                        <tr>
+                            <td>
+                                <div class="people">
+                                    <a href="/admin/infoUser/<%=e.username%>"><%=e.name%></a>
+                                    <p><%=e.email%></p>
+                                </div>
+                            </td>
+                            <td class="username">
+                                <h5><%=e.username%></h5>
+                        
+                            </td>
+                            <td class="state" >
+                                <p style="background:red">Vô hiệu hóa</p>
+                            </td>
+                        </tr>
+                     <%  }) %>
+                    
+                  
+
+
+
+            
+                    
+    
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+</html>

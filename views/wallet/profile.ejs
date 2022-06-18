@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= title %></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <%- include('header') %>
+    <section class="service_section">
+      <div class="container">
+        <div class="service_container layout_padding2">
+          <div
+            class="container"
+            style="
+              max-width: 700px;
+              padding: 30px 100px 100px 100px;
+              border: 2px solid #800080;
+              border-radius: 40px;
+              background: #9e9d9dc5;
+            "
+          >
+            <h2 style="margin-top: 20px; color: #800080; text-align: center">Thông tin cá nhân</h2>
+            <p style="text-align: center">
+              <img style="max-width: 100px" src="/images/user.png" alt="" />
+            </p>
+
+            <% switch (user.verifyAccount) { case 'waiting' : %>
+            <p style="text-align: center; color: blue; font-weight: bold">Chưa xác minh</p>
+            <% break; case 'done' : %>
+            <p style="text-align: center; color: green; font-weight: bold">Đã xác minh</p>
+            <% break; case 'updating' : %>
+            <p style="text-align: center; color: red; font-weight: bold">Cần cập nhật thông tin</p>
+            <p style="text-align: center">
+              <a href="/user/update">Cập nhật thông tin</a>
+            </p>
+
+            <% break; } %>
+            <div class="form-group">
+              <label style="color: #800080; font-weight: bold">Họ và tên:</label>
+              <p><%= user.name%></p>
+            </div>
+            <div class="form-group">
+              <label style="color: #800080; font-weight: bold">Email:</label>
+              <p><%= user.email%></p>
+            </div>
+            <div class="form-group">
+              <label style="color: #800080; font-weight: bold">Số diện thoại:</label>
+              <p><%= user.phone%></p>
+            </div>
+            <div class="form-group">
+              <label style="color: #800080; font-weight: bold">Địa chỉ:</label>
+              <p><%= user.address%></p>
+            </div>
+
+            <div class="form-group">
+              <label style="color: #800080; font-weight: bold">CMND:</label>
+              <p style="text-align: center">
+                <img style="max-width: 200px" src="<%= user.front_IDcard%>" alt="" />
+                <img style="max-width: 200px" src="<%= user.back_IDcard%>" alt="" />
+              </p>
+            </div>
+            <div class="d-flex justify-content-center " style="margin-top: 40px">
+              <form action = "/user/logout " method = "POST">
+                <button style="min-width: 100px" class = "btn btn-danger" type="submit">
+                 Đăng xuất
+                </button>
+              <form></p>
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <%- include('footer') %>
+  </body>
+  <script src="/javascripts/main.js"></script>
+</html>

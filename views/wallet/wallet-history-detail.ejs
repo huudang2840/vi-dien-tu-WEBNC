@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= title %></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <%- include('header') %>
+
+    <section class="service_section layout_padding">
+      <div class="container">
+        <div class="d-flex flex-column align-items-end">
+          <div class="custom_heading-container">
+            <hr />
+            <h2>Số dư</h2>
+          </div>
+          <h2 class="balance"><%= wallet.account_balance %></h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="service_container layout_padding2">
+          <div
+            class="container"
+            style="
+              max-width: 700px;
+              padding: 30px 100px 100px 100px;
+              border: 2px solid #800080;
+              border-radius: 40px;
+              background: #80008044;
+            "
+          >
+            <h2 style="text-align: center">Thông tin chi tiết giao dịch</h2>
+
+            <% switch ( history.type ) { case 'recharge' : %>
+            <p style="text-align: center">
+              <img style="max-width: 50px" src="/images/s1-blue.png" alt="" />
+            </p>
+            <p style="text-align: center; font-size: 24px">Nạp tiền vào tài khoản</p>
+
+            <h4>Người gửi:</h4>
+            <p style="font-size: 20px"><%= history.from%></p>
+
+            <h4>Người nhận:</h4>
+            <p style="font-size: 20px"><%= history.to%></p>
+
+            <h4>Phí:</h4>
+            <p style="font-size: 20px"><%= history.fee%></p>
+
+            <% break; case 'withdraw' : %>
+            <p style="text-align: center">
+              <img style="max-width: 50px" src="/images/s2-blue.png" alt="" />
+            </p>
+            <p style="text-align: center; font-size: 24px">Rút tiền</p>
+            <h4>Người gửi:</h4>
+            <p style="font-size: 20px"><%= history.from%></p>
+
+            <h4>Người nhận:</h4>
+            <p style="font-size: 20px"><%= history.to%></p>
+
+            <h4>Phí:</h4>
+            <p class="fee" style="font-size: 20px"><%= history.fee%></p>
+
+            <% break; case 'transfer' : %>
+            <p style="text-align: center">
+              <img style="max-width: 50px" src="/images/s3-blue.png" alt="" />
+            </p>
+            <p style="text-align: center; font-size: 24px">Chuyển tiền</p>
+            <h4>Người gửi:</h4>
+            <p style="font-size: 20px"><%= history.from%></p>
+
+            <h4>Người nhận:</h4>
+            <p style="font-size: 20px"><%= history.to%></p>
+
+            <h4>Phí:</h4>
+            <p style="font-size: 20px"><%= history.fee%></p>
+
+            <% break; case 'phonecard' : %>
+            <p style="text-align: center">
+              <img style="max-width: 50px" src="/images/s4-blue.png" alt="" />
+            </p>
+            <p style="text-align: center; font-size: 24px">Mua thẻ điện thoại</p>
+            <% if (phone_card) {%>
+            <h4>Nhà mạng:</h4>
+            <p style="font-size: 20px"><%= phone_card.name %></p>
+            <h4>Mã thẻ:</h4>
+            <p style="font-size: 20px"><%= phone_card.seri %></p>
+            <h4>Mệnh giá:</h4>
+            <p style="font-size: 20px"><%= phone_card.money %></p>
+
+            <%}%> <% break; } %>
+
+            <h4>Tiền giao dịch(Đã trừ phí):</h4>
+            <p style="font-size: 20px" class="totalBill">
+              <%= history.add_money %>,<%= history.sub_money %>,<%= history.fee %>
+            </p>
+            <h4>Số dư sau khi giao dịch:</h4>
+            <p style="font-size: 20px" class="money_transfer"><%= history.wallet_balance %></p>
+            <h4>Nội dung:</h4>
+            <p style="font-size: 20px"><%= history.contents %></p>
+
+            <h4>Trạng thái:</h4>
+            <% if(history.status == "done"){ %>
+            <p style="font-size: 20px">Hoàn thành</p>
+
+            <% }%> <% if(history.status == "waiting"){ %>
+            <p style="font-size: 20px">Chờ phê duyệt</p>
+            <% }%> <% if(history.status == "deny"){ %>
+            <p style="font-size: 20px">Từ chối</p>
+            <% }%>
+            <h4>Ngày tạo:</h4>
+            <p style="font-size: 20px"><%= history.create_at %></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <%- include('footer') %>
+  </body>
+  <script src="/javascripts/main.js"></script>
+</html>

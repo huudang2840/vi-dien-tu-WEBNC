@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Xác nhận chuyển tiền</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <%- include('header') %>
+
+    <section class="service_section layout_padding">
+      <div class="container">
+        <div class="d-flex flex-column align-items-end">
+          <div class="custom_heading-container">
+            <hr />
+            <h2>Số dư</h2>
+          </div>
+          <h2 class="balance"><%= wallet.account_balance %></h2>
+        </div>
+      </div>
+      <div
+        class="container"
+        style="
+          max-width: 700px;
+          padding: 30px 100px 100px 100px;
+          border: 2px solid #800080;
+          border-radius: 40px;
+          background: #80008044;
+        "
+      >
+        <p style="text-align: center"><img src="/images/s3-blue.png" alt="" /></p>
+        <h2 style="margin-top: 20px; color: #800080">Xác nhận Chuyển tiền</h2>
+        <p style="color: #800080">Thông tin chuyển tiền</p>
+
+        <form action="/wallet/transfer-confirm" method="POST">
+          <div class="form-group">
+            <label style="color: #800080; font-weight: bold">Tên người nhận</label>
+            <p style="font-weight: bold; font-size: 24;"><%= userReceive.name%></p>
+          </div>
+          <div class="form-group">
+            <label style="color: #800080; font-weight: bold">Số điện thoại</label>
+            <p style="font-weight: bold; font-size: 24;"><%= userReceive.phone%></p>
+            <input type="hidden" name="phone" value="<%= userReceive.phone%>"/>
+          </div>
+          <div class="form-group">
+            <label style="color: #800080; font-weight: bold">Tiền chuyển</label>
+            <p class="money_transfer" style="font-weight: bold; font-size: 24;"><%= money_transfer%></p>
+            <input type="hidden" name="money_transfer" value="<%= money_transfer%>"/>
+          <div class="form-group">
+            <label style="color: #800080; font-weight: bold">Ghi chú</label>
+            <p style="font-weight: bold; font-size: 24;"> <%= notes%></p>
+            <input type="hidden" name="notes" value="<%= notes%>"/>
+          </div>
+          <div class="form-group">
+            <label style="color: #800080; font-weight: bold">Phí</label>
+            <p class="fee" style="font-weight: bold; font-size: 24;"><%= fee %></p>
+            <input type="hidden" name="fee" value="<%= fee%>"/>
+          </div>
+          <div class="form-group">
+            <label for="person_pay" style="color: #800080; font-weight: bold">Chọn người trả:</label>
+            <select id="person_pay" name="person_pay">
+              <option value="me">Người gửi </option>
+              <option value="userReceive">Người nhận</option>
+            
+            </select>
+          </div>
+          <button type="submit" 
+          style="
+          width: 100%;
+          background: #800080;
+          margin-top: 30px;
+          border-radius: 10px;
+          border: none;
+        " class="btn btn-primary">Xác nhận</button>
+        </form>
+        <form action="/transfer" method="GET">
+          <button type="submit"
+          style="
+          width: 100%;
+          margin-top: 30px;
+          border-radius: 10px;
+          border: none;
+        " class="btn btn-danger">Hủy</button>
+        </form>
+       
+      </div>
+    </section>
+
+
+    <%- include('footer') %>
+  </body>
+  <script src="/javascripts/main.js"></script>
+</html>
+

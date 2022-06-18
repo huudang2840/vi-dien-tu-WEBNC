@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>Thông tin người dùng</title>
+</head>
+<body>
+    <% if(user ) { %>
+        <section class="service_section">
+            <div class="container">
+              <div class="service_container layout_padding2">
+                <div
+                  class="container"
+                  style="
+                    max-width: 700px;
+                    padding: 30px 100px 100px 100px;
+                    border: 2px solid #800080;
+                    border-radius: 40px;
+                    background: #9e9d9d;
+                  "
+                >
+                  <h2 style="margin-top: 20px; color: #800080; text-align: center">Thông tin cá nhân</h2>
+                  <p style="text-align: center">
+                    <img style="max-width: 100px" src="/images/user.png" alt="" />
+                  </p>
+                 <% if(user.lockAccount === true){ %>
+                    <p style="text-align: center; color: red; font-weight: bold">Khóa vô thời hạn</p>
+                    <p style="text-align: center; color: red; font-weight: bold">Lý do: Đăng nhập sai quá nhiều lần </p>
+                    <p style="text-align: center; color: red; font-weight: bold">
+                    <p style="text-align: center; color: red; ">Ngày bị khóa: <%=user.update_at%></p>
+                    <p style="text-align: center;">
+                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Mở khóa</button>
+             
+                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              Bạn có thật sự muốn mở khóa?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                              <form action="/admin/unblock/<%=user.username%>"><button type="submit" class="btn btn-primary">Đồng ý</button></form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </p>
+                   
+                    
+                    
+                 <% } %>
+                 <% if(user.lockAccount !== true) { %>
+                    <% switch (user.verifyAccount || user.lockAccount) { case 'waiting' : %>
+                    <p style="text-align: center; color: yellow; font-weight: bold">Chưa xác minh</p>
+                    <% break; case 'done' : %>
+                    <p style="text-align: center; color: green; font-weight: bold">Đã xác minh</p>
+                    <% break; case 'updating' : %>
+                    <p style="text-align: center; color: yellow; font-weight: bold">Đợi cập nhật</p>
+                    <% break; case 'disable' : %>
+                    <p style="text-align: center; color: red; font-weight: bold">Vô hiệu hóa</p>
+                    <% break; } %>
+                  <%}%>
+                  <h6 class="balance" style="text-align: center; font-weight: bold"> <%=balance%></h6>
+                  <div class="form-group">
+                    <label style="color: #800080; font-weight: bold">Họ và tên:</label>
+                    <p><%= user.name%></p>
+                  </div>
+                  <div class="form-group">
+                    <label style="color: #800080; font-weight: bold">Email:</label>
+                    <p><%= user.email%></p>
+                  </div>
+                  <div class="form-group">
+                    <label style="color: #800080; font-weight: bold">Số diện thoại:</label>
+                    <p><%= user.phone%></p>
+                  </div>
+                  <div class="form-group">
+                    <label style="color: #800080; font-weight: bold">Địa chỉ:</label>
+                    <p><%= user.address%></p>
+                  </div>
+      
+                  <div class="form-group">
+                    <label style="color: #800080; font-weight: bold">CMND:</label>
+                    <p style="text-align: center">
+                      <img style="max-width: 200px" src="<%= user.front_IDcard%>" alt="" />
+                      <img style="max-width: 200px" src="<%= user.back_IDcard%>" alt="" />
+                    </p>
+                  </div>
+
+                  <%if(user.lockAccount === false) { %>
+                    <div class="form-group" style="display: flex; margin-top:70px; justify-content:space-between">
+                      <div>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal1">Xác minh</button>
+               
+                        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel1">Xác nhận xác minh tài khoản</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                Bạn có thật sự muốn xác mình tài khoản?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                <form action="/admin/active/<%=user.username%>"><button type="submit" class="btn btn-primary">Đồng ý</button></form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal2">Hủy tài khoản</button>
+               
+                        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel2">Xác nhận vô hiệu hóa  tài khoản</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                Bạn có thật sự muốn vô hiệu hóa?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                <form action="/admin/disable/<%=user.username%>"><button type="submit" class="btn btn-primary">Đồng ý</button></form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>                    
+                      <div>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Yêu cầu cập nhật</button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Yêu cầu cập nhật thông tin</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                Bạn có muốn yêu cầu người dùng cập nhật lại CMND?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                <form action="/admin/updating/<%=user.username%>"><button type="submit" class="btn btn-primary">Đồng ý</button></form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <%}%>
+                  
+                  
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+    <%}%>
+    <%if(history) { %>
+        <div class="container">
+            <h2  style="margin-top: 20px; color: #800080">Lịch sử giao dịch</h2>
+            <div class="service_container layout_padding2">
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Icon</th>
+                <th scope="col">Loại giao dịch</th>
+                <th scope="col">Số tiền</th>
+                <th scope="col">Thời gian thực hiện</th>
+                <th scope="col">Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (var i = 1; i < history.length; i++) { let h = history[i];%>
+            
+                <th ><%= i-1 %></th>
+    
+                <% switch ( h.type ) { case 'recharge' : %>
+                <td>  <img  style=" max-width: 30px"  src="/images/s1-blue.png" alt="" /> </td>
+                <td>Nạp tiền vào tài khoản<a href="/userwallet/history/<%= h.id %>" >Chi tiết</a></td>
+    
+    
+                <% break; case 'withdraw' : %>
+                <td> <img  style=" max-width: 30px"  src="/images/s2-blue.png" alt="" /></td>
+                <td> Rút tiền <a href="/userwallet/history/<%= h.id %>" >Chi tiết</a></td>
+                
+    
+                <% break; case 'transfer' : %>
+                <td>  <img  style=" max-width: 30px"  src="/images/s3-blue.png" alt="" /> </td>
+                <td>Chuyển tiền <a href="/userwallet/history/<%= h.id %>" >Chi tiết</a></td>
+    
+                <% break; case 'phonecard' : %>
+                <td> <img style=" max-width: 30px" src="/images/s4-blue.png" alt="" /> </td>
+                <td>Mua thẻ điện thoại <a href="/userwallet/history/<%= h.id %>" >Chi tiết</a></td>
+    
+               
+                <% break; } %>
+                <td class="totalBill"><%= h.add_money %>,<%= h.sub_money %>,<%= h.fee %></td>
+                <td><%= h.create_at %></td>
+                <% switch ( h.status ) { case 'waiting' : %>
+                <td>Chờ phê duyệt</td>
+                <% break; case 'done' : %>
+                <td>Hoàn thành</td>
+                <% break; case 'deny' : %>
+                <td>Từ chối</td>
+                <% break; } %>
+              </tr>
+              <% }%>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <%}%>
+  <script src="/javascripts/main.js"></script>
+    
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= title %></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <%- include('header') %>
+    <section class="service_section layout_padding">
+      <div class="container">
+        <div class="d-flex flex-column align-items-end">
+          <div class="custom_heading-container">
+            <hr />
+            <h2>Số dư</h2>
+          </div>
+          <h2 class="balance"><%= wallet.account_balance %></h2>
+        </div>
+      </div>
+      <div
+        class="container"
+        style="
+          max-width: 700px;
+          padding: 30px 100px 100px 100px;
+          border: 2px solid #800080;
+          border-radius: 40px;
+          background: #80008044;
+        "
+      >
+        <p style="text-align: center"><img src="/images/s2-blue.png" alt="" /></p>
+        <h2 style="margin-top: 20px; color: #800080">Rút tiền</h2>
+        <p style="color: #800080">Nhập thông tin thẻ cần rút</p>
+        <form method="POST">
+          <div class="form-group">
+            <label for="number_card" style="color: #800080; font-weight: bold">Số thẻ:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="number_card"
+              placeholder="Nhập số thẻ"
+              name="number_card"
+            />
+          </div>
+          <div class="form-group">
+            <label for="CVV" style="color: #800080; font-weight: bold">CVV:</label>
+            <input type="number" class="form-control" id="CVV" placeholder="Nhập CVV" name="CVV" />
+          </div>
+          <div class="form-group">
+            <label for="date" style="color: #800080; font-weight: bold">Ngày hết hạn:</label>
+            <input
+              type="date"
+              class="form-control"
+              id="date "
+              placeholder="Nhập ngày hết hạn"
+              name="date"
+            />
+          </div>
+          <div class="form-group">
+            <label for="sub_money" style="color: #800080; font-weight: bold"
+              >Số tiền cần rút:</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="sub_money"
+              placeholder="Số tiền cần nạp"
+              name="sub_money"
+            />
+          </div>
+          <div class="form-group">
+            <label for="notes" style="color: #800080; font-weight: bold">Ghi chú:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="notes"
+              placeholder="Nhập ghi chú"
+              name="notes"
+            />
+          </div>
+
+          <% if(user.verifyAccount =="done"){%>
+
+          <button
+            type="submit"
+            style="
+              width: 100%;
+              background: #800080;
+              margin-top: 30px;
+              border-radius: 10px;
+              border: none;
+            "
+            class="btn btn-primary"
+          >
+            Thực hiện</button
+          ><%} else{ %>
+          <p style="text-align: center; width: 100%; margin-top: 30px; color: red">
+            “Tính năng này chỉ dành cho các tài khoản đã được xác minh”
+          </p>
+          <%} %> <%if(error.length > 0){ %>
+          <div style="margin-top: 20px" class="alert alert-<%=type%>"><%=error%></div>
+          <%}%>
+        </form>
+      </div>
+    </section>
+
+    <%- include('footer') %>
+  </body>
+  <script src="/javascripts/main.js"></script>
+</html>
