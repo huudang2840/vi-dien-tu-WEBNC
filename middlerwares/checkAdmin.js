@@ -5,6 +5,6 @@ module.exports = function checkAdmin(req ,res , next) {
         next();
     }
     else{
-        return res.send("Vô làm cái lon gì????")
+        return res.send("You don'n have permision!!!")
     }
 }
