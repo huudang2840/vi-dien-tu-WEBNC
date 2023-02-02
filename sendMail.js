@@ -4,8 +4,8 @@ const mailer = require("nodemailer");
 // let mailSend = "testprojectck@gmail.com";
 // let password = "Daonhattan123";
 
-let mailSend = "sinhvien@phongdaotao.com";
-let password = "svtdtu";
+let mailSend = "huudang28420@gmail.com";
+let password = "vevwxxhnbgbnarbc";
 
 let transporter = mailer.createTransport({
   service: "gmail",
